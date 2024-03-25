@@ -109,95 +109,153 @@ OPTION_WRITE_HELP = "write_help"
 
 # At the moment this is just a map of CSV related options but it will be expanded as required for other uses.
 SPARK_OPTIONS = {
-    CSV_CHARTOESCAPEQUOTEESCAPING:
-        {OPTION_HELP: "Sets a single character used for escaping the escape for the quote character. "
-                      "The default value is escape character when escape and quote characters are "
-                      "different, \\0 otherwise"},
-    CSV_COLUMNNAMEOFCORRUPTRECORD:
-        {OPTION_READ_HELP: "Allows renaming the new field having malformed "
-                           "string created by PERMISSIVE mode"},
-    CSV_COMMENT:
-        {OPTION_READ_HELP: "Sets a single character used for skipping lines beginning with this "
-                           "character. By default it is disabled"},
-    CSV_COMPRESSION:
-        {OPTION_WRITE_HELP: "Compression codec to use when saving to file. This can be one of the known "
-                            "case-insensitive short names (none, bzip2, gzip, lz4, snappy and deflate)"},
-    CSV_DATEFORMAT:
-        {OPTION_HELP: "Sets the string that indicates a date format. This applies to date type"},
-    CSV_EMPTYVALUE:
-        {OPTION_HELP: "Sets the string representation of an empty value"},
-    CSV_ENCODING:
-        {OPTION_READ_HELP: "Decodes the CSV files by the given encoding type",
-         OPTION_WRITE_HELP: "Specifies encoding (charset) of saved CSV files"},
-    CSV_ENFORCESCHEMA:
-        {OPTION_READ_HELP: "If it is set to true, the specified or inferred schema will be "
-                           "forcibly applied to datasource files, and headers in CSV files "
-                           "will be ignored. If the option is set to false, the schema will "
-                           "be validated against all headers in CSV files in the case when "
-                           "the header option is set to true. Defaults to True"},
-    CSV_ESCAPE:
-        {OPTION_HELP: "Sets a single character used for escaping quotes inside an already quoted value"},
-    CSV_ESCAPEQUOTES:
-        {OPTION_HELP: "A flag indicating whether values containing quotes should always be enclosed "
-                      "in quotes. Default is to escape all values containing a quote character"},
-    CSV_HEADER:
-        {OPTION_DEFAULT: "true",
-         OPTION_READ_HELP: "Uses the first line of CSV file as names of columns. Defaults to True",
-         OPTION_WRITE_HELP: "Writes the names of columns as the first line. Defaults to True"},
-    CSV_IGNORELEADINGWHITESPACE:
-        {OPTION_HELP: "A flag indicating whether or not leading whitespaces from "
-                      "values being read/written should be skipped"},
-    CSV_IGNORETRAILINGWHITESPACE:
-        {OPTION_HELP: "A flag indicating whether or not trailing whitespaces from "
-                      "values being read/written should be skipped"},
-    CSV_INFER_SCHEMA:
-        {OPTION_DEFAULT: "true",
-         OPTION_READ_HELP: "Infers the input schema automatically from data. It requires one "
-                           "extra pass over the data. Defaults to True"},
-    CSV_LINESEP:
-        {OPTION_HELP: "Defines the line separator that should be used for parsing. "
-                      "Defaults to \\r, \\r\\n and \\n for reading and \\n for writing"},
-    CSV_LOCALE:
-        {OPTION_READ_HELP: "Sets a locale as language tag in IETF BCP 47 format"},
-    CSV_MAXCHARSPERCOLUMN:
-        {OPTION_READ_HELP: "Defines the maximum number of characters allowed for any "
-                           "given value being read. By default, it is -1 meaning unlimited length"},
-    CSV_MAXCOLUMNS:
-        {OPTION_READ_HELP: "Defines a hard limit of how many columns a record can have"},
-    CSV_MODE:
-        {OPTION_READ_HELP: "Allows a mode for dealing with corrupt records during parsing. It supports "
-                           "the following case-insensitive modes: PERMISSIVE, DROPMALFORMED, FAILFAST"},
-    CSV_MULTILINE:
-        {OPTION_READ_HELP: "Parse one record, which may span multiple lines, per file"},
-    CSV_NANVALUE:
-        {OPTION_READ_HELP: "Sets the string representation of a non-number value"},
-    CSV_NULLVALUE:
-        {OPTION_HELP: "Sets the string representation of a null value"},
-    CSV_NEGATIVEINF:
-        {OPTION_READ_HELP: "Sets the string representation of a negative infinity value"},
-    CSV_POSITIVEINF:
-        {OPTION_READ_HELP: "Sets the string representation of a positive infinity value"},
-    CSV_QUOTE:
-        {OPTION_READ_HELP: "Sets a single character used for escaping quoted values where the separator can "
-                           "be part of the value. For reading, if you would like to turn off quotations, "
-                           "you need to set not null but an empty string",
-         OPTION_WRITE_HELP: "Sets a single character used for escaping quoted values where the separator can "
-                            "be part of the value. For writing, if an empty string is set, it uses u0000 "
-                            "(null character)"},
-    CSV_QUOTEALL:
-        {OPTION_WRITE_HELP: "A flag indicating whether all values should always be enclosed in quotes. "
-                            "Default is to only escape values containing a quote character"},
-    CSV_SAMPLINGRATIO:
-        {OPTION_READ_HELP: "Defines fraction of rows used for schema inferring"},
-    CSV_SEP:
-        {OPTION_HELP: "Sets a separator for each field and value. This separator can be one or more characters"},
-    CSV_TIMESTAMPFORMAT:
-        {OPTION_HELP: "Sets the string that indicates a timestamp with timezone format"},
-    CSV_TIMESTAMPNTZFORMAT:
-        {OPTION_HELP: "Sets the string that indicates a timestamp without timezone format"},
-    CSV_UNESCAPEDQUOTEHANDLING:
-        {OPTION_READ_HELP: "Defines how the CsvParser will handle values with unescaped quotes."
-                           "Valid values are: STOP_AT_CLOSING_QUOTE, BACK_TO_DELIMITER, STOP_AT_DELIMITER, SKIP_VALUE, RAISE_ERROR"},
+    CSV_CHARTOESCAPEQUOTEESCAPING: {
+        OPTION_HELP:
+            "Sets a single character used for escaping the escape for the quote character. "
+            "The default value is escape character when escape and quote characters are "
+            "different, \\0 otherwise"
+    },
+    CSV_COLUMNNAMEOFCORRUPTRECORD: {
+        OPTION_READ_HELP: "Allows renaming the new field having malformed "
+                          "string created by PERMISSIVE mode"
+    },
+    CSV_COMMENT: {
+        OPTION_READ_HELP:
+            "Sets a single character used for skipping lines beginning with this "
+            "character. By default it is disabled"
+    },
+    CSV_COMPRESSION: {
+        OPTION_WRITE_HELP:
+            "Compression codec to use when saving to file. This can be one of the known "
+            "case-insensitive short names (none, bzip2, gzip, lz4, snappy and deflate)"
+    },
+    CSV_DATEFORMAT: {
+        OPTION_HELP:
+            "Sets the string that indicates a date format. This applies to date type"
+    },
+    CSV_EMPTYVALUE: {
+        OPTION_HELP: "Sets the string representation of an empty value"
+    },
+    CSV_ENCODING: {
+        OPTION_READ_HELP: "Decodes the CSV files by the given encoding type",
+        OPTION_WRITE_HELP: "Specifies encoding (charset) of saved CSV files"
+    },
+    CSV_ENFORCESCHEMA: {
+        OPTION_READ_HELP:
+            "If it is set to true, the specified or inferred schema will be "
+            "forcibly applied to datasource files, and headers in CSV files "
+            "will be ignored. If the option is set to false, the schema will "
+            "be validated against all headers in CSV files in the case when "
+            "the header option is set to true. Defaults to True"
+    },
+    CSV_ESCAPE: {
+        OPTION_HELP:
+            "Sets a single character used for escaping quotes inside an already quoted value"
+    },
+    CSV_ESCAPEQUOTES: {
+        OPTION_HELP:
+            "A flag indicating whether values containing quotes should always be enclosed "
+            "in quotes. Default is to escape all values containing a quote character"
+    },
+    CSV_HEADER: {
+        OPTION_DEFAULT:
+            "true",
+        OPTION_READ_HELP:
+            "Uses the first line of CSV file as names of columns. Defaults to True",
+        OPTION_WRITE_HELP:
+            "Writes the names of columns as the first line. Defaults to True"
+    },
+    CSV_IGNORELEADINGWHITESPACE: {
+        OPTION_HELP:
+            "A flag indicating whether or not leading whitespaces from "
+            "values being read/written should be skipped"
+    },
+    CSV_IGNORETRAILINGWHITESPACE: {
+        OPTION_HELP:
+            "A flag indicating whether or not trailing whitespaces from "
+            "values being read/written should be skipped"
+    },
+    CSV_INFER_SCHEMA: {
+        OPTION_DEFAULT: "true",
+        OPTION_READ_HELP:
+            "Infers the input schema automatically from data. It requires one "
+            "extra pass over the data. Defaults to True"
+    },
+    CSV_LINESEP: {
+        OPTION_HELP:
+            "Defines the line separator that should be used for parsing. "
+            "Defaults to \\r, \\r\\n and \\n for reading and \\n for writing"
+    },
+    CSV_LOCALE: {
+        OPTION_READ_HELP: "Sets a locale as language tag in IETF BCP 47 format"
+    },
+    CSV_MAXCHARSPERCOLUMN: {
+        OPTION_READ_HELP:
+            "Defines the maximum number of characters allowed for any "
+            "given value being read. By default, it is -1 meaning unlimited length"
+    },
+    CSV_MAXCOLUMNS: {
+        OPTION_READ_HELP:
+            "Defines a hard limit of how many columns a record can have"
+    },
+    CSV_MODE: {
+        OPTION_READ_HELP:
+            "Allows a mode for dealing with corrupt records during parsing. It supports "
+            "the following case-insensitive modes: PERMISSIVE, DROPMALFORMED, FAILFAST"
+    },
+    CSV_MULTILINE: {
+        OPTION_READ_HELP:
+            "Parse one record, which may span multiple lines, per file"
+    },
+    CSV_NANVALUE: {
+        OPTION_READ_HELP: "Sets the string representation of a non-number value"
+    },
+    CSV_NULLVALUE: {
+        OPTION_HELP: "Sets the string representation of a null value"
+    },
+    CSV_NEGATIVEINF: {
+        OPTION_READ_HELP:
+            "Sets the string representation of a negative infinity value"
+    },
+    CSV_POSITIVEINF: {
+        OPTION_READ_HELP:
+            "Sets the string representation of a positive infinity value"
+    },
+    CSV_QUOTE: {
+        OPTION_READ_HELP:
+            "Sets a single character used for escaping quoted values where the separator can "
+            "be part of the value. For reading, if you would like to turn off quotations, "
+            "you need to set not null but an empty string",
+        OPTION_WRITE_HELP:
+            "Sets a single character used for escaping quoted values where the separator can "
+            "be part of the value. For writing, if an empty string is set, it uses u0000 "
+            "(null character)"
+    },
+    CSV_QUOTEALL: {
+        OPTION_WRITE_HELP:
+            "A flag indicating whether all values should always be enclosed in quotes. "
+            "Default is to only escape values containing a quote character"
+    },
+    CSV_SAMPLINGRATIO: {
+        OPTION_READ_HELP: "Defines fraction of rows used for schema inferring"
+    },
+    CSV_SEP: {
+        OPTION_HELP:
+            "Sets a separator for each field and value. This separator can be one or more characters"
+    },
+    CSV_TIMESTAMPFORMAT: {
+        OPTION_HELP:
+            "Sets the string that indicates a timestamp with timezone format"
+    },
+    CSV_TIMESTAMPNTZFORMAT: {
+        OPTION_HELP:
+            "Sets the string that indicates a timestamp without timezone format"
+    },
+    CSV_UNESCAPEDQUOTEHANDLING: {
+        OPTION_READ_HELP:
+            "Defines how the CsvParser will handle values with unescaped quotes."
+            "Valid values are: STOP_AT_CLOSING_QUOTE, BACK_TO_DELIMITER, STOP_AT_DELIMITER, SKIP_VALUE, RAISE_ERROR"
+    },
 }
 
 # Helper functions for applying SPARK_OPTIONS to templates
@@ -403,6 +461,8 @@ JDBCTOJDBC_SQL_QUERY = "jdbctojdbc.sql.query"
 
 # JDBC to GCS
 JDBCTOGCS_INPUT_URL = "jdbctogcs.input.url"
+JDBCTOGCS_INPUT_PASSWORD_SECRET_PROJECT_ID = "jdbctogcs.input.password.secret.projectid"
+JDBCTOGCS_INPUT_PASSWORD_SECRET_ID = "jdbctogcs.input.password.secret.id"
 JDBCTOGCS_INPUT_DRIVER = "jdbctogcs.input.driver"
 JDBCTOGCS_INPUT_TABLE = "jdbctogcs.input.table"
 JDBCTOGCS_INPUT_SQL_QUERY = "jdbctogcs.input.sql.query"
@@ -489,7 +549,6 @@ S3_BQ_OUTPUT_TABLE_NAME = "s3.bq.output.table.name"
 S3_BQ_TEMP_BUCKET_NAME = "s3.bq.temp.bucket.name"
 S3_BQ_OUTPUT_MODE = "s3.bq.output.mode"
 S3_BQ_ENDPOINT_VALUE = "s3.amazonaws.com"
-
 
 # Kafka To Bq
 KAFKA_BQ_CHECKPOINT_LOCATION = 'kafka.to.bq.checkpoint.location'
